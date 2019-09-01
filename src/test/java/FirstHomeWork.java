@@ -1,9 +1,5 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
-import org.w3c.dom.css.Counter;
-
-import javax.swing.text.StringContent;
 
 public class FirstHomeWork {
 

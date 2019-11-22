@@ -25,83 +25,66 @@ public class DelfiArticleTest {
     public void titleAnsCommentsTest() {
 
         LOGGER.info("Open browser");
-        //Open browser
-        System.setProperty("webdriver.chrome.driver", "C:/QA2/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "C:/QA2/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:/Jekaterina/QAGuru/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
 
         LOGGER.info("Open Delfi Home");
-        //Open Delfi Home page
         driver.get("http://rus.delfi.lv");
 
-        //Find 1st Article
+
+        LOGGER.info("Find 1st Article title and comment count");
         WebElement article = driver.findElements(ARTICLE).get(0);
-
-        //Find 1st article title
         WebElement homePageTitle = article.findElement(HOME_PAGE_TITLE);
-
-        //Save to String
         String titleToCompare = homePageTitle.getText().trim();
 
-        //Find comments count
         Integer commentsToCompare = 0;
-
         if (!article.findElements(HOME_PAGE_COMMENTS).isEmpty()) { //! menjaet znachenie na protivopolozhnoe
-        WebElement homePageComments = article.findElement(HOME_PAGE_COMMENTS);
+            WebElement homePageComments = article.findElement(HOME_PAGE_COMMENTS);
 
-        //Save to Integer
-        String commentsToParse = homePageComments.getText(); //(1)
-        commentsToParse = commentsToParse.substring(1, commentsToParse.length() - 1);
-        commentsToCompare = Integer.valueOf(commentsToParse);
+
+            String commentsToParse = homePageComments.getText(); //(1)
+            commentsToParse = commentsToParse.substring(1, commentsToParse.length() - 1);
+            commentsToCompare = Integer.valueOf(commentsToParse);
         }
-        //Open Article page
+        LOGGER.info("Open Article page, find and compare title and comment count");
         homePageTitle.click();
-
-        //Find article title
         String apTitle = driver.findElement(ARTICLE_PAGE_TITLE).getText().trim();
-
-        //Check title
         Assertions.assertEquals(titleToCompare, apTitle, "Wrong title on Article page");
 
-        //Find comment count
         Integer apComments = Integer.valueOf(driver.findElement(ARTICLE_PAGE_COMMENTS).getText().substring(1, driver.findElement(ARTICLE_PAGE_COMMENTS).getText().length() - 1));
-
-        // Check comment count
         Assertions.assertEquals(commentsToCompare, apComments, "Wrong comment count on Article page");
 
-        //Open comments page
+        LOGGER.info("Open Comment page, find and compare title and comment count");
         driver.findElement(ARTICLE_PAGE_COMMENTS).click();
 
-        //Find title
         String cpTitle = driver.findElement(COMMENT_PAGE_TITLE).getText().trim();
 
-        //Check title
-        LOGGER.info("Check title on comment page");
         Assertions.assertEquals(titleToCompare, cpTitle, "Wrong title on comment page");
 
-        //Get comment  count
         List<WebElement> cpComments = driver.findElements(COMMENT_PAGE_COMMENT);
 
 //        String anonim  = driver.findElements(COMMENT_PAGE_COMMENT).get(0).getText();
 //        String reg  = driver.findElements(COMMENT_PAGE_COMMENT).get(1).getText();
 
         String anonim = cpComments.get(0).getText();
-        String anonim1 = anonim.substring(1, anonim.length() -1);
-        Integer anon_com = Integer.valueOf(anonim1);
+        String anonim_com = anonim.substring(1, anonim.length() - 1);
+        Integer anon_com = Integer.valueOf(anonim_com);
         String reg = cpComments.get(1).getText();
-        String reg1 = reg.substring(1, reg.length() -1);
-        Integer reg_com = Integer.valueOf(reg1);
+        String reg_com = reg.substring(1, reg.length() - 1);
+        Integer reg_com_count = Integer.valueOf(reg_com);
 
         //Result of comment count on comment page
-        Integer com_on_cp = anon_com + reg_com;
+        Integer com_on_cp = anon_com + reg_com_count;
 
         //Check comment count
         Assertions.assertEquals(commentsToCompare, com_on_cp, "Wrong comment count on comment page");
 
         //Close browser
         driver.close();
-        System.out.println(anonim1);
+        System.out.println(anonim_com);
 
 
     }
@@ -110,14 +93,13 @@ public class DelfiArticleTest {
 
 //        WebElement ee = driver.findElements(COMMENT_PAGE_COMMENT).get(0);
 
-        //        WebElement suka = cpComments.get(0);
+    //        WebElement suka = cpComments.get(0);
 //        String aaa = suka.getText()
 //        for (int i = 0; i < cpComments.size(); i++) {
 //            WebElement anonim = toString();
 //        }
 
 
-
 //        driver.close();
-    }
+}
 //}

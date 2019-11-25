@@ -86,18 +86,3 @@ public class DelfiArticleTest {
 
 
     }
-
-//        String qwer = cpComments.get(0).g
-
-//        WebElement ee = driver.findElements(COMMENT_PAGE_COMMENT).get(0);
-
-    //        WebElement suka = cpComments.get(0);
-//        String aaa = suka.getText()
-//        for (int i = 0; i < cpComments.size(); i++) {
-//            WebElement anonim = toString();
-//        }
-
-
-//        driver.close();
-}
-//}

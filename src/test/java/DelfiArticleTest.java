@@ -76,13 +76,11 @@ public class DelfiArticleTest {
         String reg_com = reg.substring(1, reg.length() - 1);
         Integer reg_com_count = Integer.valueOf(reg_com);
 
-        //Result of comment count on comment page
         Integer com_on_cp = anon_com + reg_com_count;
 
-        //Check comment count
         Assertions.assertEquals(commentsToCompare, com_on_cp, "Wrong comment count on comment page");
 
-        //Close browser
+        LOGGER.info("Close browser");
         driver.close();
         System.out.println(anonim_com);
 
